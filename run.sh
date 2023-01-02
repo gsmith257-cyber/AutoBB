@@ -90,9 +90,9 @@ cat $target-subs.txt | httprobe >> $target-alive.txt
 echo "Collecting js links from target main page"
 if [ $# -eq 2 ]
 then
-    cat $target | hakrawler -js -cookie $2 -depth 2 -scope subs -plain >> jsfile_links.txt
+    cat $target-subs.txt | hakrawler -js -cookie $2 -depth 2 -scope subs -plain >> jsfile_links.txt
 else
-    cat $target | hakrawler -js -depth 2 -scope subs -plain >> jsfile_links.txt
+    cat $target-subs.txt | hakrawler -js -depth 2 -scope subs -plain >> jsfile_links.txt
 fi
 #Run JSFScan.sh on jsfile_links.txt
 #NOTE: If you feel tool is slow just comment out hakrawler line at 23 in JSFScan.sh script , but it might result in little less jsfileslinks.
