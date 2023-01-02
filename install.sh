@@ -12,7 +12,7 @@ git clone https://github.com/KathanP19/JSFScan.sh.git
 cd JSFScan.sh
 chmod +x install.sh
 ./install.sh
-echo "export PATH=$PATH:$(pwd)" >> ~/.bashrc
+add=$(pwd)
 cd ..
 #install hakrawler
 go install github.com/hakluke/hakrawler@latest
@@ -27,7 +27,7 @@ python3 setup.py install
 git clone https://github.com/DanMcInerney/xsscrapy.git
 cd xsscrapy
 pip3 install -r requirements.txt
-echo "export PATH=$PATH:$(pwd)" >> ~/.bashrc
+echo "export PATH=$PATH:$(pwd):$add" >> ~/.bashrc
 cd ..
 #install nuclei
 go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
