@@ -43,11 +43,11 @@ then
                     then
                         #Run XSStrike on target-alive.txt
                         #save filename as target-XSStrike.txt
-                        python3 xsstrike.py --skip-dom --headers $2 --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
+                        python3 xsstrike.py --skip-dom --skip --headers $2 --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
                     else
                         #Run XSStrike on target-alive.txt
                         #save filename as target-XSStrike.txt
-                        python3 xsstrike.py --skip-dom --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
+                        python3 xsstrike.py --skip-dom --skip --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
                 fi
                 cd ../$target/
                 #run nuclei on target-alive.txt
@@ -110,11 +110,11 @@ if [ $# -eq 2 ]
     then
         #Run XSStrike on target-alive.txt
         #save filename as target-XSStrike.txt
-        python3 xsstrike.py --skip-dom --headers $2 --seeds ../$target/$target-alive.txt > ../$target/$target-XSStrike.txt
+        python3 xsstrike.py --skip-dom --skip --headers $2 --seeds ../$target/$target-alive.txt > ../$target/$target-XSStrike.txt
     else
         #Run XSStrike on target-alive.txt
         #save filename as target-XSStrike.txt
-        python3 xsstrike.py --skip-dom --seeds ../$target/$target-alive.txt > ../$target/$target-XSStrike.txt
+        python3 xsstrike.py --skip-dom --skip --seeds ../$target/$target-alive.txt > ../$target/$target-XSStrike.txt
 fi
 cd ../$target/
 
