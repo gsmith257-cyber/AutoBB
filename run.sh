@@ -59,7 +59,7 @@ then
                 ../ngrok http 80 --log=stdout > $target-SSRF-ngrok.txt 2>&1 &
                 sleep 10
                 #get url from ngrok output
-                url=$(cat $target-SSRF-ngrok.txt | grep "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" -o)
+                url=$(cat $target-SSRF-ngrok.txt | grep -Eo "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)")
                 echo $url
                 #Run SSRFire on target-alive.txt
                 #save filename as target-SSRFire.txt
@@ -129,7 +129,7 @@ echo "Starting ngrok in the background"
 ../ngrok http 80 --log=stdout > $target-SSRF-ngrok.txt 2>&1 &
 sleep 10
 #get url from ngrok output
-url=$(cat $target-SSRF-ngrok.txt | grep "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" -o)
+url=$(cat $target-SSRF-ngrok.txt | grep -Eo "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" )
 echo $url
 #Run SSRFire on target-alive.txt
 #save filename as target-SSRFire.txt
