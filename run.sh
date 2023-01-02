@@ -26,6 +26,12 @@ then
             read response
             if [ $response == "y" ]
             then
+                #Remove everything except $target-alive.txt and $target-subs.txt
+                mv $target-alive.txt bak-$target-alive
+                mv $target-subs.txt bak-$target-subs
+                rm -rf $target*
+                mv bak-$target-alive $target-alive.txt
+                mv bak-$target-subs $target-subs.txt
                 echo "Running nikto on target-alive.txt"
                 cat $target-alive.txt | xargs -n1 -P10 nikto -h >> $target-nikto.txt
                 #Run xsrfprobe on target-alive.txt
@@ -97,10 +103,9 @@ fi
 #Run JSFScan.sh on jsfile_links.txt
 #NOTE: If you feel tool is slow just comment out hakrawler line at 23 in JSFScan.sh script , but it might result in little less jsfileslinks.
 bash JSFScan.sh -l $target --all -r -o $target-JSFScan
-#Run nikto on target-alive.txt
-#save filename as target-nikto.txt
+#Run nikto on target-alive.txt and save output to "current subdomain" + -nikto.txt
 echo "Running nikto on target-alive.txt"
-cat $target-alive.txt | xargs -n1 -P10 nikto -h >> $target-nikto.txt
+nikto -o $target-nikto.txt -h $target-alive.txt
 #Run xsrfprobe on target-alive.txt
 #save folder as target-xsrfprobe
 echo "Running xsrfprobe on target-alive.txt"
