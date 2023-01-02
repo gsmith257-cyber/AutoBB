@@ -34,7 +34,7 @@ then
                 mv bak-$target-alive $target-alive.txt
                 mv bak-$target-subs $target-subs.txt
                 echo "Running nikto on target-alive.txt"
-                cat $target-alive.txt | xargs -n1 -P10 nikto -h >> $target-nikto.txt
+                nikto -o $target-nikto.txt -h $target-alive.txt > /dev/null 2>&1
                 #Run xsrfprobe on target-alive.txt
                 #save folder as target-xsrfprobe
                 echo "Running xsrfprobe on target-alive.txt"
@@ -106,7 +106,7 @@ fi
 bash JSFScan.sh -l $target --all -r -o $target-JSFScan
 #Run nikto on target-alive.txt and save output to "current subdomain" + -nikto.txt
 echo "Running nikto on target-alive.txt"
-nikto -o $target-nikto.txt -h $target-alive.txt
+nikto -o $target-nikto.txt -h $target-alive.txt > /dev/null 2>&1
 #Run xsrfprobe on target-alive.txt
 #save folder as target-xsrfprobe
 echo "Running xsrfprobe on target-alive.txt"
