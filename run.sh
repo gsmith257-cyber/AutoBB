@@ -19,7 +19,7 @@ then
         rm -rf $target
     else
         #check to see if $target-alive.txt exists
-        if [ -f $target-alive.txt ]
+        if [ -f $target/$target-alive.txt ]
         then
             #ask if they want to skip enumeration
             echo "Do you want to skip enumeration? (y/n): "
