@@ -35,11 +35,7 @@ then
                 mv bak-$target-subs $target-subs.txt
                 echo "Running nikto on target-alive.txt"
                 nikto -o $target-nikto.txt -h $target-alive.txt > /dev/null 2>&1
-                #Run xsrfprobe on target-alive.txt
-                #save folder as target-xsrfprobe
-                echo "Running xsrfprobe on target-alive.txt"
-                cat $target-alive.txt | xargs -n1 -P10 xsrfprobe --malicious --quiet -u >> $target-xsrfprobe
-
+                
                 mkdir $target-xsscrapy
                 cd $target-xsscrapy
                 #if cookie is provided, use it
@@ -48,11 +44,11 @@ then
                 then
                     #Run xsscrapy on target-alive.txt
                     #save filename as target-xsscrapy.txt
-                    cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
+                    cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy/xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
                 else
                     #Run xsscrapy on target-alive.txt
                     #save filename as target-xsscrapy.txt
-                    cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
+                    cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy/xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
                 fi
                 cd ..
                 #run nuclei on target-alive.txt
@@ -116,11 +112,11 @@ if [ $# -eq 2 ]
     then
         #Run xsscrapy on target-alive.txt
         #save filename as target-xsscrapy.txt
-        cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
+        cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy/xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
     else
         #Run xsscrapy on target-alive.txt
         #save filename as target-xsscrapy.txt
-        cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
+        cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy/xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
 fi
 cd ..
 #run nuclei on target-alive.txt
