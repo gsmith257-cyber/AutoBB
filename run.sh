@@ -56,10 +56,10 @@ then
                 nuclei -list $target-alive.txt -fhr -s critical,high,medium > $target-nuclei.txt
                 #start ngrok in the background, but save output to target-SSRF-ngrok.txt
                 echo "Starting ngrok in the background"
-                ../ngrok http 80 -log=stdout > $target-SSRF-ngrok.txt 2>&1 &
-                sleep 5
+                ../ngrok http 80 --log=stdout > $target-SSRF-ngrok.txt 2>&1 &
+                sleep 10
                 #get url from ngrok output
-                url=$(cat $target-SSRF-ngrok.txt | grep "https://[0-9a-z]*\.ngrok.io" -o)
+                url=$(cat $target-SSRF-ngrok.txt | grep "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" -o)
                 echo $url
                 #Run SSRFire on target-alive.txt
                 #save filename as target-SSRFire.txt
@@ -126,10 +126,10 @@ echo "Running nuclei on target-alive.txt"
 nuclei -list $target-alive.txt -fhr -s critical,high,medium > $target-nuclei.txt
 #start ngrok in the background, but save output to target-SSRF-ngrok.txt
 echo "Starting ngrok in the background"
-../ngrok http 80 -log=stdout > $target-SSRF-ngrok.txt 2>&1 &
-sleep 5
+../ngrok http 80 --log=stdout > $target-SSRF-ngrok.txt 2>&1 &
+sleep 10
 #get url from ngrok output
-url=$(cat $target-SSRF-ngrok.txt | grep "https://[0-9a-z]*\.ngrok.io" -o)
+url=$(cat $target-SSRF-ngrok.txt | grep "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" -o)
 echo $url
 #Run SSRFire on target-alive.txt
 #save filename as target-SSRFire.txt
