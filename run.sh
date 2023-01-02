@@ -27,11 +27,13 @@ then
             if [ $response == "y" ]
             then
                 #Remove everything except $target-alive.txt and $target-subs.txt
+                cd $target
                 mv $target-alive.txt bak-$target-alive
                 mv $target-subs.txt bak-$target-subs
                 rm -rf $target*
                 mv bak-$target-alive $target-alive.txt
                 mv bak-$target-subs $target-subs.txt
+                cd ..
                 echo "Running nikto on target-alive.txt"
                 cat $target-alive.txt | xargs -n1 -P10 nikto -h >> $target-nikto.txt
                 #Run xsrfprobe on target-alive.txt
