@@ -43,11 +43,11 @@ then
                 then
                     #Run xsscrapy on target-alive.txt
                     #save filename as target-xsscrapy.txt
-                    cat ../$target/$target-xsscrapy.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target/$target-xsscrapy.txt
+                    cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target/$target-xsscrapy.txt
                 else
                     #Run xsscrapy on target-alive.txt
                     #save filename as target-xsscrapy.txt
-                    cat ../$target/$target-xsscrapy.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target/$target-xsscrapy.txt
+                    cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target/$target-xsscrapy.txt
                 fi
                 cd ../$target/
                 #run nuclei on target-alive.txt
@@ -110,11 +110,11 @@ if [ $# -eq 2 ]
     then
         #Run xsscrapy on target-alive.txt
         #save filename as target-xsscrapy.txt
-        cat ../$target/$target-xsscrapy.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target/$target-xsscrapy.txt
+        cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target/$target-xsscrapy.txt
     else
         #Run xsscrapy on target-alive.txt
         #save filename as target-xsscrapy.txt
-        cat ../$target/$target-xsscrapy.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target/$target-xsscrapy.txt
+        cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target/$target-xsscrapy.txt
 fi
 cd ../$target/
 
