@@ -53,7 +53,7 @@ then
                 #run nuclei on target-alive.txt
                 #save filename as target-nuclei.txt
                 echo "Running nuclei on target-alive.txt"
-                nuclei -list $target-alive.txt -fhr >> $target-nuclei.txt
+                nuclei -list $target-alive.txt -fhr > $target-nuclei.txt
                 #start ngrok in the background, but save output to target-SSRF-ngrok.txt
                 echo "Starting ngrok in the background"
                 ngrok http 80 > $target-SSRF-ngrok.txt &
@@ -110,18 +110,18 @@ if [ $# -eq 2 ]
     then
         #Run XSStrike on target-alive.txt
         #save filename as target-XSStrike.txt
-        python3 xsstrike.py --skip-dom --headers $2 --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
+        python3 xsstrike.py --skip-dom --headers $2 --seeds ../$target/$target-alive.txt > ../$target/$target-XSStrike.txt
     else
         #Run XSStrike on target-alive.txt
         #save filename as target-XSStrike.txt
-        python3 xsstrike.py --skip-dom --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
+        python3 xsstrike.py --skip-dom --seeds ../$target/$target-alive.txt > ../$target/$target-XSStrike.txt
 fi
 cd ../$target/
 
 #run nuclei on target-alive.txt
 #save filename as target-nuclei.txt
 echo "Running nuclei on target-alive.txt"
-nuclei -list $target-alive.txt -fhr -s critical,high,medium >> $target-nuclei.txt
+nuclei -list $target-alive.txt -fhr -s critical,high,medium > $target-nuclei.txt
 #start ngrok in the background, but save output to target-SSRF-ngrok.txt
 echo "Starting ngrok in the background"
 ngrok http 80 > $target-SSRF-ngrok.txt &
