@@ -48,11 +48,11 @@ then
                 then
                     #Run xsscrapy on target-alive.txt
                     #save filename as target-xsscrapy.txt
-                    cat ../$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
+                    cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
                 else
                     #Run xsscrapy on target-alive.txt
                     #save filename as target-xsscrapy.txt
-                    cat ../$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
+                    cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
                 fi
                 cd ..
                 #run nuclei on target-alive.txt
