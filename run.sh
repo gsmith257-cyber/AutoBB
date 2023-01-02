@@ -18,6 +18,54 @@ then
         #remove the folder
         rm -rf $target
     else
+        #check to see if $target-alive.txt exists
+        if [ -f $target-alive.txt ]
+        then
+            #ask if they want to skip enumeration
+            echo "Do you want to skip enumeration? (y/n): "
+            read response
+            if [ $response == "y" ]
+            then
+                echo "Running nikto on target-alive.txt"
+                cat $target-alive.txt | xargs -n1 -P10 nikto -h >> $target-nikto.txt
+                #Run xsrfprobe on target-alive.txt
+                #save folder as target-xsrfprobe
+                echo "Running xsrfprobe on target-alive.txt"
+                cat $target-alive.txt | xargs -n1 -P10 xsrfprobe --malicious --quiet -u >> $target-xsrfprobe
+
+                mkdir $target-xsscrapy
+                cd $target-xsscrapy
+                #if cookie is provided, use it
+                echo "Running xsscrapy on target-alive.txt"
+                if [ $# -eq 2 ]
+                then
+                    #Run xsscrapy on target-alive.txt
+                    #save filename as target-xsscrapy.txt
+                    cat $target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> $target-xsscrapy.txt
+                else
+                    #Run xsscrapy on target-alive.txt
+                    #save filename as target-xsscrapy.txt
+                    cat $target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> $target-xsscrapy.txt
+                fi
+                cd ..
+                #run nuclei on target-alive.txt
+                #save filename as target-nuclei.txt
+                echo "Running nuclei on target-alive.txt"
+                nuclei -list $target-alive.txt -fhr >> $target-nuclei.txt
+                #start ngrok in the background, but save output to target-SSRF-ngrok.txt
+                echo "Starting ngrok in the background"
+                ngrok http 80 > $target-SSRF-ngrok.txt &
+                #get url from ngrok output
+                url=$(cat $target-SSRF-ngrok.txt | grep "https://[0-9a-z]*\.ngrok.io" -o)
+                #Run SSRFire on target-alive.txt
+                #save filename as target-SSRFire.txt
+                echo "Running SSRFire on target-alive.txt"
+                cd ./SSRFire
+                cat $target-alive.txt | xargs -n1 -P10 ./ssrfire.sh -s $url -f ../$target-alive.txt -d >> $target-SSRFire.txt
+                echo "Done"
+                exit
+            fi
+        fi
         #exit
         exit
     fi
