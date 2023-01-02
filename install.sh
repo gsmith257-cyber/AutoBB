@@ -4,17 +4,17 @@ wget https://github.com/OWASP/Amass/releases/download/v3.21.2/amass_linux_amd64.
 unzip amass_linux_amd64.zip
 cd amass_linux_amd64
 chmod +x amass
-sudo mv amass /usr/local/bin
+mv amass /usr/local/bin
 cd ..
 #install JSFScan.sh
 git clone https://github.com/KathanP19/JSFScan.sh.git
 cd JSFScan.sh
-sudo chmod +x install.sh
+chmod +x install.sh
 ./install.sh
 echo "export PATH=$PATH:$(pwd)" >> ~/.bashrc
 cd ..
 #install nikto
-sudo apt-get install nikto
+apt-get install nikto
 #install http probe
 go install github.com/tomnomnom/httprobe@latest
 #install xsrfprobe, clone github.com/0xInfection/XSRFProbe/tree/fixes
