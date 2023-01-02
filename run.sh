@@ -36,18 +36,18 @@ then
                 echo "Running nikto on target-alive.txt"
                 nikto -o $target-nikto.txt -h $target-alive.txt > /dev/null 2>&1
                 
-                cd ../xsscrapy/
-                #if cookie is provided, use it
-                echo "Running xsscrapy on target-alive.txt"
+                cd ../XSStrike/
+                #if cookie is provided, use itXSStrike
+                echo "Running XSStrike on target-alive.txt"
                 if [ $# -eq 2 ]
-                then
-                    #Run xsscrapy on target-alive.txt
-                    #save filename as target-xsscrapy.txt
-                    cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target/$target-xsscrapy.txt
-                else
-                    #Run xsscrapy on target-alive.txt
-                    #save filename as target-xsscrapy.txt
-                    cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target/$target-xsscrapy.txt
+                    then
+                        #Run XSStrike on target-alive.txt
+                        #save filename as target-XSStrike.txt
+                        python3 xsstrike.py --skip-dom --headers $2 --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
+                    else
+                        #Run XSStrike on target-alive.txt
+                        #save filename as target-XSStrike.txt
+                        python3 xsstrike.py --skip-dom --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
                 fi
                 cd ../$target/
                 #run nuclei on target-alive.txt
@@ -103,18 +103,18 @@ bash JSFScan.sh -l $target --all -r -o $target-JSFScan
 echo "Running nikto on target-alive.txt"
 nikto -o $target-nikto.txt -h $target-alive.txt > /dev/null 2>&1
 
-cd ../xsscrapy/
+cd ../XSStrike/
 #if cookie is provided, use it
-echo "Running xsscrapy on target-alive.txt"
+echo "Running XSStrike on target-alive.txt"
 if [ $# -eq 2 ]
     then
-        #Run xsscrapy on target-alive.txt
-        #save filename as target-xsscrapy.txt
-        cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target/$target-xsscrapy.txt
+        #Run XSStrike on target-alive.txt
+        #save filename as target-XSStrike.txt
+        python3 xsstrike.py --skip-dom --headers $2 --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
     else
-        #Run xsscrapy on target-alive.txt
-        #save filename as target-xsscrapy.txt
-        cat ../$target/$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target/$target-xsscrapy.txt
+        #Run XSStrike on target-alive.txt
+        #save filename as target-XSStrike.txt
+        python3 xsstrike.py --skip-dom --seeds ../$target/$target-alive.txt >> ../$target/$target-XSStrike.txt
 fi
 cd ../$target/
 

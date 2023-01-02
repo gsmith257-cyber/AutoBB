@@ -20,9 +20,9 @@ go install github.com/hakluke/hakrawler@latest
 apt-get install nikto
 #install http probe
 go install github.com/tomnomnom/httprobe@latest
-#install xsscrapy
-git clone https://github.com/DanMcInerney/xsscrapy.git
-cd xsscrapy
+#install xsstrike
+git clone https://github.com/s0md3v/XSStrike.git
+cd XSStrike
 pip3 install -r requirements.txt
 echo "export PATH=$PATH:$(pwd):$add" >> ~/.bashrc
 cd ..
