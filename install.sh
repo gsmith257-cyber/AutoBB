@@ -11,6 +11,7 @@ git clone https://github.com/KathanP19/JSFScan.sh.git
 cd JSFScan.sh
 sudo chmod +x install.sh
 ./install.sh
+echo "export PATH=$PATH:$(pwd)" >> ~/.bashrc
 cd ..
 #install nikto
 sudo apt-get install nikto
