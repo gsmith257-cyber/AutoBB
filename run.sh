@@ -67,8 +67,8 @@ then
                 #Run SSRFire on target-alive.txt
                 #save filename as target-SSRFire.txt
                 echo "Running SSRFire on target-alive.txt"
-                cd ./SSRFire
-                cat ../$target-alive.txt | xargs -n1 -P10 ./ssrfire.sh -s $url -f ../$target-alive.txt -d >> ../$target-SSRFire.txt
+                cd ../SSRFire
+                cat ../$target/$target-alive.txt | xargs -n1 -P10 ./ssrfire.sh -s $url -f ../$target/$target-alive.txt -d >> ../$target/$target-SSRFire.txt
                 echo "Done"
                 exit
             fi
@@ -113,14 +113,14 @@ cd $target-xsscrapy
 #if cookie is provided, use it
 echo "Running xsscrapy on target-alive.txt"
 if [ $# -eq 2 ]
-then
-    #Run xsscrapy on target-alive.txt
-    #save filename as target-xsscrapy.txt
-    cat ../$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
-else
-    #Run xsscrapy on target-alive.txt
-    #save filename as target-xsscrapy.txt
-    cat ../$target-alive.txt | xargs -n1 -P10 python3 xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
+    then
+        #Run xsscrapy on target-alive.txt
+        #save filename as target-xsscrapy.txt
+        cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py --cookie $2 -c 20 -u >> ../$target-xsscrapy.txt
+    else
+        #Run xsscrapy on target-alive.txt
+        #save filename as target-xsscrapy.txt
+        cat ../$target-alive.txt | xargs -n1 -P10 python3 ../../xsscrapy.py -c 20 -u >> ../$target-xsscrapy.txt
 fi
 cd ..
 #run nuclei on target-alive.txt
@@ -135,6 +135,6 @@ url=$(cat $target-SSRF-ngrok.txt | grep "https://[0-9a-z]*\.ngrok.io" -o)
 #Run SSRFire on target-alive.txt
 #save filename as target-SSRFire.txt
 echo "Running SSRFire on target-alive.txt"
-cd ./SSRFire
-cat ../$target-alive.txt | xargs -n1 -P10 ./ssrfire.sh -s $url -f ../$target-alive.txt -d >> ../$target-SSRFire.txt
+cd ../SSRFire
+cat ../$target/$target-alive.txt | xargs -n1 -P10 ./ssrfire.sh -s $url -f ../$target/$target-alive.txt -d >> ../$target/$target-SSRFire.txt
 echo "Done"
