@@ -2,6 +2,7 @@
 #install owasp amass
 wget https://github.com/OWASP/Amass/releases/download/v3.21.2/amass_linux_amd64.zip
 unzip amass_linux_amd64.zip
+rm amass_linux_amd64.zip
 cd amass_linux_amd64
 chmod +x amass
 mv amass /usr/local/bin
