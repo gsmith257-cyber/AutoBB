@@ -13,6 +13,8 @@ chmod +x install.sh
 ./install.sh
 echo "export PATH=$PATH:$(pwd)" >> ~/.bashrc
 cd ..
+#install hakrawler
+go install github.com/hakluke/hakrawler@latest
 #install nikto
 apt-get install nikto
 #install http probe
@@ -33,3 +35,4 @@ git clone https://github.com/ksharinarayanan/SSRFire.git
 cd SSRFire
 chmod +x setup.sh
 ./setup.sh
+cd ..
