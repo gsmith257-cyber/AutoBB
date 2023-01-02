@@ -20,9 +20,6 @@ go install github.com/hakluke/hakrawler@latest
 apt-get install nikto
 #install http probe
 go install github.com/tomnomnom/httprobe@latest
-#install xsrfprobe, clone github.com/0xInfection/XSRFProbe/tree/fixes
-git clone -b fixes https://github.com/0xInfection/XSRFProbe.git
-python3 setup.py install
 #install xsscrapy
 git clone https://github.com/DanMcInerney/xsscrapy.git
 cd xsscrapy
@@ -30,7 +27,7 @@ pip3 install -r requirements.txt
 echo "export PATH=$PATH:$(pwd):$add" >> ~/.bashrc
 cd ..
 #install nuclei
-go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+go install github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 #install SSRFire
 git clone https://github.com/ksharinarayanan/SSRFire.git
 cd SSRFire
